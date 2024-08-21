@@ -38,6 +38,13 @@ const Dashboard = () => {
 
   const { tempHumData, waterLevelData, illuminationData, tdsData, liquidTempData, predictionData, pieData } = data;
 
+// 임시 데이터 설정
+const donutData = [
+    { name: 'Water', value: 54, fill: '#00C49F' },
+    { name: 'Nutrient', value: 100, fill: '#FFBB28' }
+  ];
+
+
   return (
     <div className="Overview">
       <h1>Overview</h1>
@@ -57,19 +64,42 @@ const Dashboard = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
+
+         {/* Water Level Chart 대신 Water Level List 구현 */}
         <div className="card">
           <h3>Water Level</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={waterLevelData}>
-              <XAxis dataKey="name" />
-              <YAxis />
-              <CartesianGrid stroke="#ccc" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="value" fill="#8884d8" />
-            </BarChart>
-          </ResponsiveContainer>
+          <div className="water-level">
+            <div className="water-level-item">
+              <span>tank1 (water level)</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '60%' }}></div>
+              </div>
+              <span>60% Correct</span>
+            </div>
+            <div className="water-level-item">
+              <span>tank2 (nutrient solution level)</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '45%' }}></div>
+              </div>
+              <span>45% Correct</span>
+            </div>
+            <div className="water-level-item">
+              <span>tank3 (recycle fluid level)</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '20%' }}></div>
+              </div>
+              <span>20% Correct</span>
+            </div>
+            <div className="water-level-item">
+              <span>tank4 (farm level)</span>
+              <div className="progress-bar">
+                <div className="progress-fill" style={{ width: '45%' }}></div>
+              </div>
+              <span>45% Correct</span>
+            </div>
+          </div>
         </div>
+
         <div className="card">
           <h3>Illumination</h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -96,6 +126,7 @@ const Dashboard = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
+
         <div className="card">
           <h3>Farm Liquid Temperature</h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -109,21 +140,7 @@ const Dashboard = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <div className="card">
-          <h3>Water and Nutrient Solution Prediction</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={predictionData}>
-              <XAxis dataKey="name" />
-              <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-              <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-              <CartesianGrid stroke="#ccc" />
-              <Tooltip />
-              <Legend />
-              <Line yAxisId="left" type="monotone" dataKey="water" stroke="#8884d8" />
-              <Line yAxisId="right" type="monotone" dataKey="nutrient" stroke="#82ca9d" />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+
         <div className="card">
           <h3>Water vs Nutrient</h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -145,48 +162,109 @@ const Dashboard = () => {
             </PieChart>
           </ResponsiveContainer>
         </div>
+
+        {/* Water and Nutrient Solution Prediction 섹션 */}
+        <div className="card double-card" style={{ width: '100%' }}>
+          <h3>Water and Nutrient Solution Prediction</h3>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ width: '50%' }}>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={predictionData}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <CartesianGrid stroke="#ccc" />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="water" fill="#00C49F" />
+                  <Bar dataKey="nutrient" fill="#FFBB28" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+            <div style={{ width: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <ResponsiveContainer width="80%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={donutData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    paddingAngle={5}
+                    label
+                  >
+                    {donutData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <h1>Control</h1>
       <div className="control">
-        <h1>Controls</h1>
-        <div className="switches">
+        {/* Control Card 섹션 */}
+        <div className="control-card">
+          <h3>Fan</h3>
           <label className="switch">
             <input type="checkbox" className="checkbox" checked={fan} onChange={() => setFan(!fan)} />
             <div className="slider"></div>
-            <span>Fan</span>
           </label>
+        </div>
+
+        <div className="control-card">
+          <h3>Heater</h3>
           <label className="switch">
             <input type="checkbox" className="checkbox" checked={heater} onChange={() => setHeater(!heater)} />
             <div className="slider"></div>
-            <span>Heater</span>
           </label>
+        </div>
+
+        <div className="control-card">
+          <h3>LED Light</h3>
           <label className="switch">
             <input type="checkbox" className="checkbox" checked={ledLight} onChange={() => setLedLight(!ledLight)} />
             <div className="slider"></div>
-            <span>LED Light</span>
           </label>
         </div>
-        <div className="sliders">
-          <label>
-            Tank 1
+
+        {/* Pump 섹션 */}
+        <div className="slider-container">
+          <h3>Pump</h3>
+          <div className="slider-wrapper">
+            <select>
+              <option value="tank1">Tank 1</option>
+            </select>
             <input type="range" min="0" max="100" value={tank1} onChange={(e) => setTank1(e.target.value)} />
-          </label>
-          <label>
-            Tank 2
+          </div>
+          <div className="slider-wrapper">
+            <select>
+              <option value="tank2">Tank 2</option>
+            </select>
             <input type="range" min="0" max="100" value={tank2} onChange={(e) => setTank2(e.target.value)} />
-          </label>
-          <label>
-            Tank 3
+          </div>
+          <div className="slider-wrapper">
+            <select>
+              <option value="tank3">Tank 3</option>
+            </select>
             <input type="range" min="0" max="100" value={tank3} onChange={(e) => setTank3(e.target.value)} />
-          </label>
-          <label>
-            Tank 4
+          </div>
+          <div className="slider-wrapper">
+            <select>
+              <option value="tank4">Tank 4</option>
+            </select>
             <input type="range" min="0" max="100" value={tank4} onChange={(e) => setTank4(e.target.value)} />
-          </label>
+          </div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Dashboard;
