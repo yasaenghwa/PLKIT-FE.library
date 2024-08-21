@@ -157,10 +157,49 @@ body {
 }
 
 .water-level-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px; 
+}
+
+.progress-bar:hover .tooltip {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1000; 
+  top: -125%; /* top으로 위치 변경 */
+  left: 50%;
+  margin-left: -60px;
+  transition: opacity 0.3s;
+}
+
+
+
+
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* 아래쪽에 화살표 */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
 }
 
 .progress-bar {
@@ -170,7 +209,7 @@ body {
   overflow: hidden;
   height: 10px; 
   margin: 0 10px;
-  position: relative;
+  position: relative; /* 툴팁 위치를 기준으로 삼기 위해 상대 위치 사용 */
 }
 
 .progress-fill {
@@ -191,3 +230,5 @@ body {
   white-space: nowrap;
   margin-left: 10px;
 }
+
+

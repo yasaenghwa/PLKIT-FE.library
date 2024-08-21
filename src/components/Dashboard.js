@@ -27,10 +27,10 @@ const Dashboard = () => {
   const [tank4, setTank4] = useState(50); // Tank4 슬라이더 상태 관리
 
   useEffect(() => {
-    fetch('/data/smartFarmData.json')
-      .then(response => response.json())
-      .then(setData);
-  }, []);
+    fetch(`${process.env.PUBLIC_URL}/data/smartFarmData.json`)
+        .then(response => response.json())
+        .then(setData);
+    }, []);
 
   if (!data) {
     return <div>Loading...</div>;
