@@ -12,10 +12,7 @@
     { "name": "Tank 1", "value": 60 },
     { "name": "Tank 2", "value": 45 },
     { "name": "Tank 3", "value": 50 },
-    { "name": "Tank 4", "value": 55 },
-    { "name": "Tank 5", "value": 65 },
-    { "name": "Tank 6", "value": 70 },
-    { "name": "Tank 7", "value": 75 }
+    { "name": "Tank 4", "value": 55 }
   ],
   "illuminationData": [
     { "name": "10/1", "light": 400 },
