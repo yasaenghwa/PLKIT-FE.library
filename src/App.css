@@ -133,6 +133,7 @@ body {
 .slider-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
 }
@@ -223,4 +224,91 @@ body {
   width: auto;
   white-space: nowrap;
   margin-left: 10px;
+}
+
+/* Input field styling */
+.control-card input[type="number"] {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+/* Water level buttons */
+.level-buttons button {
+  background-color: #444;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  width: 22%;
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.level-buttons button:hover {
+  background-color: #00c49f;
+}
+
+/* Display water level percentage */
+.control-card p {
+  font-size: 16px;
+  color: #fff;
+  margin-top: 15px;
+}
+
+/* Tooltip on hover */
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #ffffff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s;
+}
+
+.level-buttons button:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Add hover effect for level buttons */
+.level-buttons button:hover {
+  background-color: #00c49f;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.control-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 왼쪽 1칸, 오른쪽 2칸 */
+  grid-gap: 20px;
+}
+
+.control-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.control-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* pump와 water level을 같은 행에 배치 */
+  grid-gap: 20px;
 }

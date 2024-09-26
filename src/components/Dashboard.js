@@ -252,152 +252,162 @@ const Dashboard = () => {
 
       <h1>Control</h1>
       <div className="control">
-        {/* Control Card 섹션 */}
-        <div className="control-card">
-          <h3>Fan</h3>
-          <label className="switch">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={fan}
-              onChange={() => setFan(!fan)}
-            />
-            <div className="slider"></div>
-          </label>
-        </div>
+        <div className="control-grid-layout">
+          {/* Control Card 섹션 */}
+          <div className="control-left">
+            <div className="control-card">
+              <h3>Fan</h3>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={fan}
+                  onChange={() => setFan(!fan)}
+                />
+                <div className="slider"></div>
+              </label>
+            </div>
 
-        <div className="control-card">
-          <h3>Heater</h3>
-          <label className="switch">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={heater}
-              onChange={() => setHeater(!heater)}
-            />
-            <div className="slider"></div>
-          </label>
-        </div>
+            <div className="control-card">
+              <h3>Heater</h3>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={heater}
+                  onChange={() => setHeater(!heater)}
+                />
+                <div className="slider"></div>
+              </label>
+            </div>
 
-        <div className="control-card">
-          <h3>LED Light</h3>
-          <label className="switch">
-            <input
-              type="checkbox"
-              className="checkbox"
-              checked={ledLight}
-              onChange={() => setLedLight(!ledLight)}
-            />
-            <div className="slider"></div>
-          </label>
-        </div>
-
-        {/* Pump 섹션 */}
-        <div className="slider-container">
-          <h3>Pump</h3>
-          <div className="slider-wrapper">
-            <select>
-              <option value="tank1">Tank 1</option>
-            </select>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={tank1}
-              onChange={(e) => setTank1(e.target.value)}
-            />
-          </div>
-          <div className="slider-wrapper">
-            <select>
-              <option value="tank2">Tank 2</option>
-            </select>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={tank2}
-              onChange={(e) => setTank2(e.target.value)}
-            />
-          </div>
-          <div className="slider-wrapper">
-            <select>
-              <option value="tank3">Tank 3</option>
-            </select>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={tank3}
-              onChange={(e) => setTank3(e.target.value)}
-            />
-          </div>
-          <div className="slider-wrapper">
-            <select>
-              <option value="tank4">Tank 4</option>
-            </select>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={tank4}
-              onChange={(e) => setTank4(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* Water Level Control */}
-        <div className="control-card" style={{ width: "25%" }}>
-          <h3>Water Level</h3>
-          {/* 직접 수위 입력 */}
-          <input
-            type="number"
-            min="0"
-            max="100"
-            value={waterLevel}
-            onChange={(e) => handleWaterLevelChange(e.target.value)}
-            style={{
-              marginBottom: "10px",
-              width: "100%",
-              padding: "5px",
-              fontSize: "16px",
-            }}
-          />
-
-          {/* 단계 선택 */}
-          <div
-            className="level-buttons"
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
-            <button
-              onClick={() => handleWaterLevelChange(25)}
-              style={{ width: "22%" }}
-            >
-              1단계 (25)
-            </button>
-            <button
-              onClick={() => handleWaterLevelChange(50)}
-              style={{ width: "22%" }}
-            >
-              2단계 (50)
-            </button>
-            <button
-              onClick={() => handleWaterLevelChange(75)}
-              style={{ width: "22%" }}
-            >
-              3단계 (75)
-            </button>
-            <button
-              onClick={() => handleWaterLevelChange(100)}
-              style={{ width: "22%" }}
-            >
-              4단계 (100)
-            </button>
+            <div className="control-card">
+              <h3>LED Light</h3>
+              <label className="switch">
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={ledLight}
+                  onChange={() => setLedLight(!ledLight)}
+                />
+                <div className="slider"></div>
+              </label>
+            </div>
           </div>
 
-          {/* 수위 출력 */}
-          <p style={{ marginTop: "10px", fontSize: "16px" }}>
-            현재 수위: {waterLevel}%
-          </p>
+          {/* Pump 섹션 */}
+          <div className="control-right">
+            <div className="slider-container control-card">
+              <h3>Pump</h3>
+              <div className="slider-wrapper">
+                <select>
+                  <option value="tank1">Tank 1</option>
+                </select>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={tank1}
+                  onChange={(e) => setTank1(e.target.value)}
+                />
+              </div>
+              <div className="slider-wrapper">
+                <select>
+                  <option value="tank2">Tank 2</option>
+                </select>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={tank2}
+                  onChange={(e) => setTank2(e.target.value)}
+                />
+              </div>
+              <div className="slider-wrapper">
+                <select>
+                  <option value="tank3">Tank 3</option>
+                </select>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={tank3}
+                  onChange={(e) => setTank3(e.target.value)}
+                />
+              </div>
+              <div className="slider-wrapper">
+                <select>
+                  <option value="tank4">Tank 4</option>
+                </select>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  value={tank4}
+                  onChange={(e) => setTank4(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Water Level Control */}
+            <div className="control-card water-level" style={{ width: "100%" }}>
+              <h3>Water Level</h3>
+              {/* 직접 수위 입력 */}
+              <input
+                type="number"
+                min="0"
+                max="100"
+                value={waterLevel}
+                onChange={(e) => handleWaterLevelChange(e.target.value)}
+                style={{
+                  marginBottom: "10px",
+                  width: "100%",
+                  padding: "5px",
+                  fontSize: "16px",
+                }}
+              />
+
+              {/* 단계 선택 */}
+              <div
+                className="level-buttons"
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  justifyContent: "center",
+                }}
+              >
+                <button
+                  onClick={() => handleWaterLevelChange(25)}
+                  style={{ width: "100px" }}
+                >
+                  1단계 (25)
+                </button>
+                <button
+                  onClick={() => handleWaterLevelChange(50)}
+                  style={{ width: "100px" }}
+                >
+                  2단계 (50)
+                </button>
+                <button
+                  onClick={() => handleWaterLevelChange(75)}
+                  style={{ width: "100px" }}
+                >
+                  3단계 (75)
+                </button>
+                <button
+                  onClick={() => handleWaterLevelChange(100)}
+                  style={{ width: "100px" }}
+                >
+                  4단계 (100)
+                </button>
+              </div>
+
+              {/* 수위 출력 */}
+              <p style={{ marginTop: "10px", fontSize: "16px" }}>
+                현재 수위: {waterLevel}%
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -405,5 +415,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-//
