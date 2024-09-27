@@ -1,12 +1,13 @@
 import React from "react";
 import "../App.css";
+
 const Control = ({
   fan,
-  setFan,
+  setFan, // 이 함수가 MQTT 전송을 포함
   heater,
-  setHeater,
+  setHeater, // 이 함수가 MQTT 전송을 포함
   ledLight,
-  setLedLight,
+  setLedLight, // 이 함수가 MQTT 전송을 포함
   tank1,
   setTank1,
   tank2,
@@ -16,7 +17,7 @@ const Control = ({
   tank4,
   setTank4,
   waterLevel,
-  handleWaterLevelChange,
+  handleWaterLevelChange, // 이 함수가 MQTT 전송을 포함
 }) => {
   return (
     <div>
@@ -30,7 +31,7 @@ const Control = ({
                 type="checkbox"
                 className="checkbox"
                 checked={fan}
-                onChange={() => setFan(!fan)}
+                onChange={setFan} // MQTT로 팬 상태 전송
               />
               <div className="slider"></div>
             </label>
@@ -42,7 +43,7 @@ const Control = ({
                 type="checkbox"
                 className="checkbox"
                 checked={heater}
-                onChange={() => setHeater(!heater)}
+                onChange={setHeater} // MQTT로 히터 상태 전송
               />
               <div className="slider"></div>
             </label>
@@ -54,7 +55,7 @@ const Control = ({
                 type="checkbox"
                 className="checkbox"
                 checked={ledLight}
-                onChange={() => setLedLight(!ledLight)}
+                onChange={setLedLight} // MQTT로 LED 상태 전송
               />
               <div className="slider"></div>
             </label>
@@ -73,7 +74,7 @@ const Control = ({
                 min="0"
                 max="100"
                 value={tank1}
-                onChange={(e) => setTank1(e.target.value)}
+                onChange={(e) => setTank1(e.target.value)} // 슬라이더 값 전송
               />
             </div>
             <div className="slider-wrapper">
@@ -85,7 +86,7 @@ const Control = ({
                 min="0"
                 max="100"
                 value={tank2}
-                onChange={(e) => setTank2(e.target.value)}
+                onChange={(e) => setTank2(e.target.value)} // 슬라이더 값 전송
               />
             </div>
             <div className="slider-wrapper">
@@ -97,7 +98,7 @@ const Control = ({
                 min="0"
                 max="100"
                 value={tank3}
-                onChange={(e) => setTank3(e.target.value)}
+                onChange={(e) => setTank3(e.target.value)} // 슬라이더 값 전송
               />
             </div>
             <div className="slider-wrapper">
@@ -109,7 +110,7 @@ const Control = ({
                 min="0"
                 max="100"
                 value={tank4}
-                onChange={(e) => setTank4(e.target.value)}
+                onChange={(e) => setTank4(e.target.value)} // 슬라이더 값 전송
               />
             </div>
           </div>
@@ -121,7 +122,7 @@ const Control = ({
               min="0"
               max="100"
               value={waterLevel}
-              onChange={(e) => handleWaterLevelChange(e.target.value)}
+              onChange={(e) => handleWaterLevelChange(e.target.value)} // 수위 전송
             />
             {/* 단계 선택 */}
             <div
