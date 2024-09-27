@@ -1,30 +1,27 @@
 {
   "tempHumData": [
-    { "name": "1일", "temp": 24, "hum": 65 },
-    { "name": "2일", "temp": 25, "hum": 66 },
-    { "name": "3일", "temp": 26, "hum": 64 },
-    { "name": "4일", "temp": 27, "hum": 63 },
-    { "name": "5일", "temp": 28, "hum": 62 },
-    { "name": "6일", "temp": 29, "hum": 61 },
-    { "name": "7일", "temp": 30, "hum": 60 }
+    { "name": "10/1", "temp": 24, "hum": 65 },
+    { "name": "10/2", "temp": 25, "hum": 66 },
+    { "name": "10/3", "temp": 26, "hum": 64 },
+    { "name": "10/4", "temp": 27, "hum": 63 },
+    { "name": "10/5", "temp": 28, "hum": 62 },
+    { "name": "10/6", "temp": 29, "hum": 61 },
+    { "name": "10/7", "temp": 30, "hum": 60 }
   ],
   "waterLevelData": [
     { "name": "Tank 1", "value": 60 },
     { "name": "Tank 2", "value": 45 },
     { "name": "Tank 3", "value": 50 },
-    { "name": "Tank 4", "value": 55 },
-    { "name": "Tank 5", "value": 65 },
-    { "name": "Tank 6", "value": 70 },
-    { "name": "Tank 7", "value": 75 }
+    { "name": "Tank 4", "value": 55 }
   ],
   "illuminationData": [
-    { "name": "1일", "light": 400 },
-    { "name": "2일", "light": 420 },
-    { "name": "3일", "light": 440 },
-    { "name": "4일", "light": 460 },
-    { "name": "5일", "light": 480 },
-    { "name": "6일", "light": 500 },
-    { "name": "7일", "light": 520 }
+    { "name": "10/1", "light": 400 },
+    { "name": "10/2", "light": 420 },
+    { "name": "10/3", "light": 440 },
+    { "name": "10/4", "light": 460 },
+    { "name": "10/5", "light": 480 },
+    { "name": "10/6", "light": 500 },
+    { "name": "10/7", "light": 520 }
   ],
   "tdsData": [
     { "name": "1일", "tds": 700 },
@@ -36,13 +33,13 @@
     { "name": "7일", "tds": 760 }
   ],
   "liquidTempData": [
-    { "name": "1일", "temp": 18 },
-    { "name": "2일", "temp": 19 },
-    { "name": "3일", "temp": 20 },
-    { "name": "4일", "temp": 21 },
-    { "name": "5일", "temp": 22 },
-    { "name": "6일", "temp": 23 },
-    { "name": "7일", "temp": 24 }
+    { "name": "10/1", "temp": 18 },
+    { "name": "10/2", "temp": 19 },
+    { "name": "10/3", "temp": 20 },
+    { "name": "10/4", "temp": 21 },
+    { "name": "10/5", "temp": 22 },
+    { "name": "10/6", "temp": 23 },
+    { "name": "10/7", "temp": 24 }
   ],
   "predictionData": [
     { "name": "1일", "water": 40, "nutrient": 30 },
