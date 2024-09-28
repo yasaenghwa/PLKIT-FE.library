@@ -17,7 +17,15 @@ import {
 import "../App.css";
 
 const Overview = ({ data }) => {
-  if (!data) {
+  if (
+    !data ||
+    !data.tempHumData ||
+    !data.waterLevelData ||
+    !data.illuminationData ||
+    !data.tdsData ||
+    !data.liquidTempData ||
+    !data.predictionData
+  ) {
     return <div>Loading...</div>;
   }
 
@@ -27,12 +35,11 @@ const Overview = ({ data }) => {
     illuminationData,
     tdsData,
     liquidTempData,
-    pieData,
     predictionData,
   } = data;
 
-  // 가장 최근 데이터를 가져오기
-  const latestData = data.predictionData[data.predictionData.length - 1];
+  const latestData = predictionData[predictionData.length - 1];
+  const latestIndex = predictionData.length - 1;
 
   return (
     <div className="Overview">
@@ -41,8 +48,11 @@ const Overview = ({ data }) => {
         <div className="card">
           <h3>Farm Air Temperature and Humidity</h3>
           <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={tempHumData}>
-              <XAxis dataKey="name" />
+            <LineChart
+              data={tempHumData}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <XAxis dataKey="name" interval={0} tick={{ fontSize: 10 }} />
               <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
               <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
               <CartesianGrid stroke="#ccc" />
@@ -86,7 +96,7 @@ const Overview = ({ data }) => {
           <h3>Illumination</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={illuminationData}>
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" interval={0} tick={{ fontSize: 10 }} />
               <YAxis />
               <CartesianGrid stroke="#ccc" />
               <Tooltip />
@@ -100,7 +110,7 @@ const Overview = ({ data }) => {
           <h3>TDS</h3>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={tdsData}>
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" interval={0} tick={{ fontSize: 10 }} />
               <YAxis />
               <CartesianGrid stroke="#ccc" />
               <Tooltip />
@@ -113,8 +123,11 @@ const Overview = ({ data }) => {
         <div className="card">
           <h3>Farm Liquid Temperature</h3>
           <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={liquidTempData}>
-              <XAxis dataKey="name" />
+            <LineChart
+              data={liquidTempData}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <XAxis dataKey="name" interval={0} tick={{ fontSize: 10 }} />
               <YAxis />
               <CartesianGrid stroke="#ccc" />
               <Tooltip />
@@ -129,7 +142,13 @@ const Overview = ({ data }) => {
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
-                data={pieData}
+                data={[
+                  { name: "Water", value: predictionData[latestIndex].water },
+                  {
+                    name: "Nutrient",
+                    value: predictionData[latestIndex].nutrient,
+                  },
+                ]}
                 dataKey="value"
                 nameKey="name"
                 cx="50%"
@@ -138,12 +157,8 @@ const Overview = ({ data }) => {
                 fill="#8884d8"
                 label
               >
-                {pieData.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={["#0088FE", "#FFBB28"][index % 2]}
-                  />
-                ))}
+                <Cell key="cell-0" fill="#0088FE" />
+                <Cell key="cell-1" fill="#FFBB28" />
               </Pie>
             </PieChart>
           </ResponsiveContainer>
@@ -155,7 +170,7 @@ const Overview = ({ data }) => {
             <div style={{ width: "50%" }}>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={predictionData}>
-                  <XAxis dataKey="name" />
+                  <XAxis dataKey="name" interval={0} tick={{ fontSize: 10 }} />
                   <YAxis />
                   <CartesianGrid stroke="#ccc" />
                   <Tooltip />

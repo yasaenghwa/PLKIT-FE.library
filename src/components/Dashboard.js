@@ -16,9 +16,43 @@ const Dashboard = () => {
   const [waterLevel, setWaterLevel] = useState(0);
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/data/smartFarmData.json`)
+    // tempHumData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/tempHumData.json`)
       .then((response) => response.json())
-      .then(setData);
+      .then((tempHumData) => setData((prev) => ({ ...prev, tempHumData })));
+
+    // waterLevelData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/waterLevelData.json`)
+      .then((response) => response.json())
+      .then((waterLevelData) =>
+        setData((prev) => ({ ...prev, waterLevelData }))
+      );
+
+    // illuminationData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/illuminationData.json`)
+      .then((response) => response.json())
+      .then((illuminationData) =>
+        setData((prev) => ({ ...prev, illuminationData }))
+      );
+
+    // tdsData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/tdsData.json`)
+      .then((response) => response.json())
+      .then((tdsData) => setData((prev) => ({ ...prev, tdsData })));
+
+    // liquidTempData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/liquidTempData.json`)
+      .then((response) => response.json())
+      .then((liquidTempData) =>
+        setData((prev) => ({ ...prev, liquidTempData }))
+      );
+
+    // predictionData 로드
+    fetch(`${process.env.PUBLIC_URL}/data/predictionData.json`)
+      .then((response) => response.json())
+      .then((predictionData) =>
+        setData((prev) => ({ ...prev, predictionData }))
+      );
   }, []);
 
   // MQTT 설정
@@ -26,7 +60,7 @@ const Dashboard = () => {
     host: "52.79.219.88", // 브로커 IP 주소
     port: 9001, // MQTT 브로커의 포트 (일반적으로 1883)
     protocol: "mqtt", // 프로토콜을 명시적으로 'mqtt'로 설정
-  }); //
+  });
 
   // 수신된 메시지를 처리하는 부분 (handleMqttMessage)
   const handleMqttMessage = (topic, message) => {

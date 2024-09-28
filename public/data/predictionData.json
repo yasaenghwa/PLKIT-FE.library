@@ -1,0 +1,9 @@
+[
+  { "name": "1일", "water": 40, "nutrient": 30 },
+  { "name": "2일", "water": 45, "nutrient": 32 },
+  { "name": "3일", "water": 50, "nutrient": 34 },
+  { "name": "4일", "water": 55, "nutrient": 36 },
+  { "name": "5일", "water": 60, "nutrient": 38 },
+  { "name": "6일", "water": 65, "nutrient": 40 },
+  { "name": "7일", "water": 70, "nutrient": 42 }
+]
